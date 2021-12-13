@@ -1,50 +1,33 @@
+#Recursive solution for N-Queens problem in Python
+from math import *
 import sys
 
-solutions = []
+x = {}
+n = int(sys.argv[1])
 
-def place(positions,col):
-	if positions is None:
-		return True
-	current_row = len(positions)
-	if col in  positions:
-		return False
-	#diagonal
-	d = 1
-	for prev_row in range(current_row-1,-1,-1):
-		if positions[prev_row] == col - d :
-			return False
-		d += 1
-	#off-diagonal
-	d = 1
-	for prev_row in range(current_row-1,-1,-1):
-		if positions[prev_row] == col + d:
-			return False
-		d += 1
-	
-	return True
-
-def solve_nqueens(positions,row,max_queens):
-	global solutions
-
-	if(row == max_queens):
-		solutions.append(positions)
-		return True
-	
-	for col in range(0,max_queens):
-		if place(positions,col) :
-			Y = positions[:]
-			Y.append(col)
-			solve_nqueens(Y,row+1,max_queens)
-		else:
-			continue
-
-	return False
+def place(k, i):
+    if (i in x.values()):
+        return False
+    j = 1
+    while(j < k):
+        if abs(x[j]-i) == abs(j-k):
+            return False
+        j+=1
+    return True
+def clear_future_blocks(k):
+    for i in range(k,n+1):
+       x[i]=None
+def NQueens(k):
+    for i in range(1, n + 1):
+        clear_future_blocks(k)
+        if place(k, i):
+            x[k] = i
+            if (k==n):
+                for j in x:
+                    print x[j]
+                print '---------'
+            else:
+                NQueens(k+1)
 
 
-
-if __name__ == '__main__':
-	X = []
-	queens = int(sys.argv[1])
-	solve_nqueens(X,0,queens);
-	print solutions
-        
+NQueens(1)

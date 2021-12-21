@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 
+"""
 
+Json Module
 
-
+"""
 
 import json
 
@@ -10,9 +12,20 @@ import json
 
 
 
-def load_from_json_file(filename):
+def from_json_string(my_str):
 
-    with open(filename, "r", encoding="UTF-8") as f:
+    """convert str to object
 
-        return json.load(f)
-    
+    args:
+
+        my_str: string to convert
+
+    return:
+
+        object
+
+    """
+
+
+
+    return json.loads(my_str)

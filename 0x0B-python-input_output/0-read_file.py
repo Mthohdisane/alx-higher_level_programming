@@ -1,12 +1,34 @@
 #!/usr/bin/python3
 
+"""
+
+Read file function
+
+"""
+
 
 
 
 
 def read_file(filename=""):
 
-    with open(filename, "r", encoding="UTF-8") as f:
+    """read a file
 
-        print(f.read(), end="")
-        
+    args:
+
+        filename: file to manipulate
+
+    return:
+
+        na
+
+    """
+
+
+
+    with open(filename, encoding="utf-8") as f:
+
+        for line in f.read():
+
+            print(line, end="")
+            
